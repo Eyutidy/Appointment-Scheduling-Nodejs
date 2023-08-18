@@ -1,0 +1,56 @@
+.appointment-form {
+  max-width: 500px;
+  margin: 100px auto;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px; /* Updated font size for date input */
+}
+
+select {
+  height: 40px;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+@media (max-width: 768px) {
+  .appointment-form {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}

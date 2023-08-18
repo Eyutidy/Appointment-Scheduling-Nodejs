@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>User</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="../Aadtemp/assets/img/favicon1.png" rel="icon" />
+  <link href="../Aadtemp/assets/img/apple-touch-icon1.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="sec/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="sec/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="sec/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="sec/vendor/quill/quill.snow.css" rel="stylesheet" />
+  <link href="sec/vendor/quill/quill.bubble.css" rel="stylesheet" />
+  <link href="sec/vendor/remixicon/remixicon.css" rel="stylesheet" />
+  <link href="sec/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+  <!-- Template Main CSS File -->
+  <link href="sec/css/style.css" rel="stylesheet" />
+
+  <!-- =======================================================
+  
+  ======================================================== -->
+</head>
+
+<body>
+  <%- include('../partials/nav.ejs')%>
+
+    <!-- ======= Sidebar ======= -->
+    <%- include('../partials/side.ejs')%>
+      <main id="main" class="main">
+        <div class="pagetitle">
+          <h1>User</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </nav>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section dashboard">
+          <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+              <div class="row">
+                <!-- Sales Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <!-- <div class="card info-card sales-card"> -->
+                  <!-- <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"
+                      ><i class="bi bi-three-dots"></i
+                    ></a>
+                    <ul
+                      class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                    >
+                      <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+
+                      <li><a class="dropdown-item" href="#">Today</a></li>
+                      <li><a class="dropdown-item" href="#">This Month</a></li>
+                      <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                  </div> -->
+
+                  <!-- <div class="card-body">
+                    <h5 class="card-title">Appointment </h5>
+                    <div class="d-flex align-items-center">
+                      <div
+                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                      >
+                        <i class="bi bi-alarm-fill"></i>
+                      </div>
+                      <div class="ps-3">
+                        <h6><%=appointments.length %></h6>
+                        <!-- <span class="text-success small pt-1 fw-bold">12%</span>
+                        <span class="text-muted small pt-2 ps-1">increase</span> -->
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- </div>
+                </div> -->
+                  <!-- </div> -->
+                  <!-- End Sales Card -->
+                  <!-- Inside your dashboard view template -->
+                  <!-- Inside your dashboard view template -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Right side columns -->
+          </div>
+        </section>
+        <div class="col-md-4 mb-4">
+          <% if (appointments && appointments.length> 0) { %>
+            <% appointments.forEach(appointment=> { %>
+              <% if (appointment.userId===user.id) { %>
+                <div class="card appointment-card">
+                  <div class="card-body">
+                    <h5 class="card-title">Appointment Details</h5>
+                    <p class="card-text">
+                      <strong>Date:</strong>
+                      <%= appointment.date %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Time:</strong>
+                      <%= appointment.time %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Customer Name:</strong>
+                      <%= appointment.name %>
+                    </p>
+                    <button type="button" class="btn btn-primary"
+                      onclick="rescheduleAppointment('<%= appointment.userId %>')">Reschedule</button>
+                    <button type="button" class="btn btn-danger"
+                    onclick="deleteAppointment('<%= appointment.userId %>', '<%= appointment.date %>', '<%= appointment.time %>')">Cancel</button>
+                  </div>
+                </div>
+                <% } %>
+                  <% }) %>
+                    <% } else { %>
+                      <p>No appointments found.</p>
+                      <% } %>
+        </div>
+      <script>
+
+function openRescheduleModal(appointmentId) {
+  // Generate the URL for the reschedule form page, including the appointment ID
+  const rescheduleFormUrl = `/reschedule?appointmentId=${appointmentId}`;
+
+  // Redirect the user to the reschedule form page
+  window.location.href = rescheduleFormUrl;
+}
+      </script>
+        <!-- Reschedule Appointment Modal -->
+      
+         
+         <div id="reschedule-form-container"></div>
+
+         <script>   
+          // function openRescheduleModal(appointmentId) {
+          //   // Get the container element to render the rescheduling form
+          //   const container = document.getElementById("reschedule-form-container");
+        
+            // Create the rescheduling form HTML
+//             const formHTML = `
+//               <div class="container mt-5">
+//                 <div class="row">
+//                   <div class="col-md-12">
+//                     <div class="card form-container">
+//                       <div class="card-body">
+//                         <form id="reschedule-form" action="/submit_reschedule" method="POST" class="appointment-form">
+//                           <h2 class="form-title">Reschedule</h2>
+//                           <input type="hidden" name="appointmentId" value="${appointmentId}">
+//                           <div class="form-group">
+//                             <label for="date">Date:</label>
+//                             <input type="date" id="date" name="rescheduleDate" required>
+//                           </div>
+//                           <div class="form-group">
+//                             <label for="time">Time:</label>
+//                             <select id="time" name="rescheduleTime" required>
+//                               <option value="" selected disabled>Select a time</option>
+//                               <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+//                               <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+//                               <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+//                               <option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+//                               <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+//                               <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+//                               <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+//                             </select>
+//                           </div>
+//                           <input type="submit" value="Submit" class="submit-btn">
+//                         </form>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+// <style>.appointment-form {
+//   max-width: 500px;
+//   margin: 100px auto;
+// }
+
+// .form-title {
+//   text-align: center;
+//   margin-bottom: 20px;
+// }
+
+// .form-group {
+//   margin-bottom: 20px;
+// }
+
+// label {
+//   display: block;
+//   font-weight: bold;
+//   margin-bottom: 5px;
+// }
+
+// select,
+// input[type="text"],
+// input[type="email"],
+// input[type="date"] {
+//   width: 100%;
+//   padding: 10px;
+//   border: 1px solid #ddd;
+//   border-radius: 5px;
+//   font-size: 16px; /* Updated font size for date input */
+// }
+
+// select {
+//   height: 40px;
+// }
+
+// input[type="submit"] {
+//   margin-top: 10px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   padding: 10px 20px;
+//   cursor: pointer;
+//   width: 100%;
+//   border-radius: 5px;
+//   transition: background-color 0.3s ease;
+// }
+
+// input[type="submit"]:hover {
+//   background-color: #0056b3;
+// }
+// @media (max-width: 768px) {
+//   .appointment-form {
+//     max-width: 100%;
+//     padding: 0 15px;
+//   }
+// }
+// </style>
+// `;
+        
+//             // Render the rescheduling form in the container
+//             container.innerHTML = formHTML;
+        
+//             // Optional: Add event listeners or further customization for the form
+//             const rescheduleForm = document.getElementById("reschedule-form");
+//             rescheduleForm.addEventListener("submit", handleRescheduleFormSubmit);
+//             const today = new Date();
+//             const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+//             const maxSelectableDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+//             const dateInput = document.getElementById('date');
+//             dateInput.min = tomorrow.toISOString().split('T')[0];
+//             dateInput.max = maxSelectableDate.toISOString().split('T')[0];
+//           }
+          
+        
+//           function deleteAppointment(appointmentId) {
+//             // Implement the logic for deleting an appointment
+//             // This function can be called similarly to the rescheduling function
+//           }
+   </script>
+        
+      </main>
+      <!-- End #main -->
+
+      <!-- ======= Footer ======= -->
+      <%- include('../partials/footer.ejs')%>
+        <!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+        <script>
+          function deleteAppointment(userId,date,time) {
+            if (confirm('Are you sure you want to delete this appointment?')) {
+              fetch(`/appointments/${userId}?date=${date}&time=${time}`, {
+                method: 'DELETE'
+              })
+                .then(response => {
+                  if (response.ok) {
+                    // Optionally, you can remove the appointment element from the UI here
+                    // or refresh the page to reflect the updated list of appointments.
+                    console.log('Appointments deleted successfully');
+                    location.reload();
+                  } else {
+                    console.error('Failed to delete the appointments');
+                  }
+                })
+                .catch(error => {
+                  console.error('An error occurred while deleting the appointments:', error);
+                });
+            }
+          }
+        </script>
+      <script>
+        function rescheduleAppointment(userId) {
+          if (confirm('Are you sure you want to reschedule this appointment?')) {
+            const rescheduleFormUrl = `/reschedule?userId=${userId}&token=<%= token %>`;
+            window.location.href = rescheduleFormUrl;
+          }
+        }
+      </script>
+      
+        
+        <script src="sec/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="sec/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="sec/vendor/chart.js/chart.umd.js"></script>
+        <script src="sec/vendor/echarts/echarts.min.js"></script>
+        <script src="sec/vendor/quill/quill.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="sec/js/main.js"></script>
+        <script src="sec/adapp.js"></script>
+</body>
+
+</html>

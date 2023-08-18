@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Signin</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Favicons -->
+        <link href="assets/img/favicon.png" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+ 
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="dsec/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dsec/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="dsec/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="dsec/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="dsec/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="sec/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="sec/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="sec/css/style.css" rel="stylesheet">
+
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <div class="container">
+          <section >
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="/">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="signup">Signup</a></li>
+                        <li class="nav-item"><a class="nav-link" href="signin">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </section>
+        </div>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-4 d-flex flex-column align-items-center justify-content-center">
+
+              <!-- <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="assets/img/logo.png" alt="">
+                   <span class="d-none d-lg-block"></span> 
+                </a>
+              </div> -->
+
+              <div class="card mb-9">
+
+                <div class="card-body">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                    <p class="text-center small"></p>
+                  </div>
+
+                  <form class="row g-3 needs-validation" novalidate method="post" action="/signup">
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">Your Name</label>
+                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <div class="invalid-feedback">Please enter your name without numbers!</div>
+                    </div>                  
+                  
+                    <div class="col-12">
+                      <label for="yourEmail" class="form-label">Your Email</label>
+                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <div class="invalid-feedback">Please enter a valid Email address!</div>
+                    </div>
+                  
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Username</label>
+                      <div class="input-group has-validation">
+                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <div class="invalid-feedback">Please choose a username without numbers.</div>
+                      </div>
+                    </div>
+                  
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="yourPassword" minlength="8" required>
+                      <div class="invalid-feedback">Password must be at least 8 characters long!</div>
+                    </div>
+                  
+                    <div class="col-12">
+                      <label for="confirmPassword" class="form-label">Confirm Password</label>
+                      <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" required>
+                      <div class="invalid-feedback">Please enter your password again!</div>
+                    </div>
+                  
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                    </div>
+                    <div class="col-12">
+                      <p class="small mb-0">Already have an account? <a href="signin">Log in</a></p>
+                    </div>
+                  </form>
+                  
+                  <script>
+                    const nameInput = document.getElementById('yourName',"yourUsername");
+             nameInput.addEventListener('input', validateName);
+
+   function validateName() {
+    const name = nameInput.value;
+    const containsNumbers = /\d/.test(name);
+
+    if (containsNumbers) {
+      nameInput.setCustomValidity('Name should not contain numbers!');
+    } else {
+      nameInput.setCustomValidity('');
+    }
+  }
+  const usernameInput = document.getElementById('yourUsername');
+  usernameInput.addEventListener('input', validateUsername);
+
+  function validateUsername() {
+    const username = usernameInput.value;
+    const containsNumbers = /\d/.test(username);
+
+    if (containsNumbers) {
+      usernameInput.setCustomValidity('Username should not contain numbers!');
+    } else {
+      usernameInput.setCustomValidity('');
+    }
+  }
+                    // Add custom password validation
+                    const passwordInput = document.getElementById('yourPassword');
+                    const confirmPasswordInput = document.getElementById('confirmPassword');
+                  
+                    passwordInput.addEventListener('input', validatePassword);
+                    confirmPasswordInput.addEventListener('input', validatePassword);
+                  
+                    function validatePassword() {
+                      const password = passwordInput.value;
+                      const confirmPassword = confirmPasswordInput.value;
+                  
+                      if (password.length >= 8) {
+                        passwordInput.setCustomValidity('');
+                      } else {
+                        passwordInput.setCustomValidity('Password must be at least 8 characters long!');
+                      }
+                  
+                      if (password === confirmPassword) {
+                        confirmPasswordInput.setCustomValidity('');
+                      } else {
+                        confirmPasswordInput.setCustomValidity('Passwords do not match!');
+                      }
+                    }
+                  </script>
+                  
+                </div>
+              </div>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+</body>
+<script>
+  
+</script>
+
+  <!-- Vendor JS Files -->
+  <script src="sec/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="sec/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="sec/vendor/chart.js/chart.umd.js"></script>
+  <script src="sec/vendor/echarts/echarts.min.js"></script>
+  <script src="sec/vendor/quill/quill.min.js"></script>
+  <script src="sec/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="sec/vendor/tinymce/tinymce.min.js"></script>
+  <script src="sec/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="sec/js/main.js"></script>
+        
+
+</body>
+
+</html>
+
+            

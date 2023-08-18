@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Profile</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="sec/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="sec/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="sec/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="sec/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="sec/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="sec/css/style.css" rel="stylesheet" />
+
+    <!-- =======================================================
+ 
+  ======================================================== -->
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <%- include('../partials/nav.ejs')%>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <%- include('../partials/side.ejs')%>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Profile</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Profile</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <section class="section profile">
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="card">
+              <div
+                class="card-body profile-card pt-4 d-flex flex-column align-items-center"
+              >
+                <% if (user) { %>
+                <h3><%= user.name %></h3>
+                <span>user</span>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-8">
+            <div class="card">
+              <div class="card-body pt-3">
+                <!-- Bordered Tabs -->
+                <ul class="nav nav-tabs nav-tabs-bordered">
+                  <li class="nav-item">
+                    <button
+                      class="nav-link active"
+                      data-bs-toggle="tab"
+                      data-bs-target="#profile-overview"
+                    >
+                      Overview
+                    </button>
+                  </li>
+
+                  <li class="nav-item">
+                    <button
+                      class="nav-link"
+                      data-bs-toggle="tab"
+                      data-bs-target="#profile-edit"
+                    >
+                      Edit Profile
+                    </button>
+                  </li>
+
+                  <!-- <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                </li> -->
+
+                  <li class="nav-item">
+                    <button
+                      class="nav-link"
+                      data-bs-toggle="tab"
+                      data-bs-target="#profile-change-password"
+                    >
+                      Change Password
+                    </button>
+                  </li>
+                </ul>
+                <div class="tab-content pt-2">
+                  <div
+                    class="tab-pane fade show active profile-overview"
+                    id="profile-overview"
+                  >
+                    <h5 class="card-title">Profile Details</h5>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Name</div>
+                      <% if (user) { %>
+                      <div class="col-lg-9 col-md-8"><%= user.name %></div>
+                      <% } %>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Email</div>
+                      <% if (user) { %>
+                      <div class="col-lg-9 col-md-8"><%= user.email %></div>
+                      <% } %>
+                    </div>
+                  </div>
+
+                  <div
+                    class="tab-pane fade profile-edit pt-3"
+                    id="profile-edit"
+                  >
+                    <!-- Profile Edit Form -->
+                    <form id="updateForm" action="/update" method="POST">
+                      <div class="row mb-3">
+                        <label
+                          for="name"
+                          class="col-md-4 col-lg-3 col-form-label"
+                          >Name</label
+                        >
+                        <div class="col-md-8 col-lg-9">
+                          <input
+                            name="name"
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            value="<%= user.name %>"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label
+                          for="email"
+                          class="col-md-4 col-lg-3 col-form-label"
+                          >Email</label
+                        >
+                        <div class="col-md-8 col-lg-9">
+                          <input
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            value="<%= user.email %>"
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="hidden"
+                        name="userId"
+                        value="<%= user.id %>"
+                      />
+
+                      <div class="text-center">
+                        <button type="submit4" class="btn btn-primary">
+                          Save Changes
+                        </button>
+                      </div>
+                    </form>
+
+                    <!-- End Profile Edit Form -->
+                  </div>
+
+                  <div class="tab-pane fade pt-3" id="profile-change-password">
+                    <!-- Change Password Form -->
+                    <form
+                      id="change-password-form"
+                      action="/changepassword"
+                      method="POST"
+                    >
+                      <input type="hidden" name="userId" id="userId" value="" />
+                      <div class="row mb-3">
+                        <div class="input-group has-validation">
+                          <label
+                            for="currentPassword"
+                            class="col-md-4 col-lg-3 col-form-label"
+                            >Current Password</label
+                          >
+                          <div class="col-md-8 col-lg-9">
+                            <input
+                              name="currentPassword"
+                              type="password"
+                              class="form-control"
+                              id="currentPassword"
+                              required
+                            />
+                            <div class="invalid-feedback">
+                              Please enter your current password.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label
+                          for="newPassword"
+                          class="col-md-4 col-lg-3 col-form-label"
+                          >New Password</label
+                        >
+                        <div class="col-md-8 col-lg-9">
+                          <input
+                            name="newPassword"
+                            type="password"
+                            class="form-control"
+                            id="newPassword"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label
+                          for="renewPassword"
+                          class="col-md-4 col-lg-3 col-form-label"
+                          >Re-enter New Password</label
+                        >
+                        <div class="col-md-8 col-lg-9">
+                          <input
+                            name="renewPassword"
+                            type="password"
+                            class="form-control"
+                            id="renewPassword"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <input
+                        type="hidden"
+                        name="userId"
+                        value="<%= user.id %>"
+                      />
+
+                      <div class="text-center">
+                        <button type="submit5" class="btn btn-primary">
+                          Change Password
+                        </button>
+                      </div>
+                    </form>
+
+                    <!-- End Change Password Form -->
+                  </div>
+                </div>
+                <!-- End Bordered Tabs -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <%- include('../partials/footer.ejs')%>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- <script>
+      document
+        .getElementById("change-password-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const currentPassword =
+            document.getElementById("currentPassword").value;
+          const newPassword = document.getElementById("newPassword").value;
+          const renewPassword = document.getElementById("renewPassword").value;
+          const userId = document.getElementById("userId").value;
+
+          // Validate the form inputs as needed
+
+          // Create a data object with the form values
+          const data = {
+            currentPassword,
+            newPassword,
+            confirmPassword: renewPassword,
+            userId,
+          };
+
+          try {
+            const response = await fetch("/updatePassword", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+              // Password update successful
+              alert("Password updated successfully.");
+              // Redirect or perform any other actions as needed
+            } else {
+              // Password update failed
+              const errorData = await response.json();
+              alert(`Password update failed: ${errorData.error}`);
+              // Handle the error or display an appropriate message
+            }
+          } catch (error) {
+            console.error("Error occurred while updating password:", error);
+            // Handle the error or display an appropriate message
+          }
+        });
+    </script> -->
+
+    <!-- Vendor JS Files -->
+    <script src="sec/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="sec/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="sec/vendor/chart.js/chart.umd.js"></script>
+    <script src="sec/vendor/echarts/echarts.min.js"></script>
+    <script src="sec/vendor/quill/quill.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="sec/js/main.js"></script>
+    <script src="sec/js/profileUpdate.js"></script>
+    <script></script>
+  </body>
+</html>

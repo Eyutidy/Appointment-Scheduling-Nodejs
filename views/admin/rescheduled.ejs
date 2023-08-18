@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Rescheduled</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="../NiceAdmin/assets/img/favicon1.png" rel="icon" />
+    <link href="../NiceAdmin/assets/img/apple-touch-icon1.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="sec/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="sec/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="sec/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="sec/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="sec/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="sec/css/style.css" rel="stylesheet" />
+
+    <!-- =======================================================
+  
+  ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <%- include('../partials/navadmin.ejs')%>
+        <!-- End Header -->
+
+        <!-- ======= Sidebar ======= -->
+        <%- include('../partials/sideadmin.ejs')%>
+            <main id="main" class="main">
+                <div class="pagetitle">
+                    <h1>Reschedule</h1>
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Rescheduled</li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- End Page Title -->
+
+                <section class="section dashboard">
+                    <div class="row">
+                        <!-- Left side columns -->
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <!-- Sales Card -->
+                                <div class="col-xxl-4 col-md-6">
+                                    <div class="card info-card sales-card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rescheduled </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div
+                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6 id="appointment-count"></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+
+                                <!-- Revenue Card -->
+                                <div class="col-xxl-4 col-md-6">
+                                    <!-- <div class="card info-card revenue-card">
+                         -->
+                                        <!-- <div class="card-body">
+                                            <h5 class="card-title">Canceled <span></span></h5>
+
+                                            <div class="d-flex align-items-center">
+                                                <div
+                                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h6 id="appointment-count"></h6> -->
+                                                    <!-- <span class="text-success small pt-1 fw-bold"></span>
+                          <span class="text-muted small pt-2 ps-1">increase</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Revenue Card -->
+
+                                <!-- Customers Card -->
+                                <div class="col-12">
+                                    <div class="card recent-sales overflow-auto wide table">
+                                        <div class="filter">
+                                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                <li class="dropdown-header text-start">
+                                                    <h6>Filter</h6>
+                                                </li>
+
+                                                <li><a class="dropdown-item" href="#">Today</a></li>
+                                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rescheduled appointment <span></span></h5>
+
+
+                                            <table class="table table-borderless datatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Date</th>
+                                                        <th>Time</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                            <tr id="">
+                                                                <td>
+                                                                   Hello
+                                                                </td>
+                                                                <td>
+                                                                   a
+                                                                </td>
+                                                                <td>
+                                                                   a
+                                                                </td>
+                                                                <td>
+                                                                   a
+                                                                </td>
+                                                                <td>
+                                                                    <div class="btn-group" role="group">
+                                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                                           
+                                                                            
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                          
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Left side columns -->
+
+                    <!-- Right side columns -->
+                    <!-- End Right side columns -->
+                    </div>
+                </section>
+            </main>
+            <!-- End #main -->
+
+            <%- include('../partials/footer.ejs')%>
+
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                    class="bi bi-arrow-up-short"></i></a>
+</body>
+
+<script src="sec/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="sec/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="sec/vendor/chart.js/chart.umd.js"></script>
+<script src="sec/vendor/echarts/echarts.min.js"></script>
+<script src="sec/vendor/quill/quill.min.js"></script>
+<script src="sec/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="sec/vendor/tinymce/tinymce.min.js"></script>
+<script src="sec/vendor/php-email-form/validate.js"></script>
+
+<script src="sec/js/main.js"></script>
+
+</html>

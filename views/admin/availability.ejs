@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Availability</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="sec/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="sec/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="sec/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="sec/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="sec/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="sec/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="sec/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- ======= Header ======= -->
+    <%- include('../partials/navadmin.ejs')%>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <%- include('../partials/sideadmin.ejs')%>
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Availability</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Availability</li>
+          </ol>
+        </nav>
+    </div>
+    <section class="section dashboard">
+              <!-- Sales Card -->
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3 class="card-title mb-4">Manage Available Times</h3>
+                      <form method="POST" action="/sample-route?token=<%= token %>">
+                        <input type="hidden" name="userToken" value="admin">
+                        <div class="form-group">
+                          <label for="dateInput">Select a date:</label>
+                          <input type="date" id="dateInput" name="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="startTimeInput">Start Time:</label>
+                          <select id="startTimeInput" name="startTime" class="form-control" required>
+                            <option value="" selected disabled>Select a start time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="endTimeInput">End Time:</label>
+                          <select id="endTimeInput" name="endTime" class="form-control" required>
+                            <option value="" selected disabled>Select an end time</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                          </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-4">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    </main>
+  </body>
+  <script src="sec/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="sec/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="sec/vendor/chart.js/chart.umd.js"></script>
+  <script src="sec/vendor/echarts/echarts.min.js"></script>
+  <script src="sec/vendor/quill/quill.min.js"></script>
+  <script src="sec/vendor/simple-datatables/simple-datatables.js"></script>
+  <script>
+    // Automatically select end time based on start time selection
+    const startTimeInput = document.getElementById('startTimeInput');
+    const endTimeInput = document.getElementById('endTimeInput');
+    startTimeInput.addEventListener('change', () => {
+      // Calculate the index of the end time option to select
+      const selectedIndex = startTimeInput.selectedIndex + 0;
+      // Select the corresponding end time option
+      endTimeInput.selectedIndex = selectedIndex;
+    });
+  </script>
+  <script src="sec/js/main.js"></script>
+</html>
